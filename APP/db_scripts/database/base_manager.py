@@ -41,11 +41,12 @@ class DBManager:
             conn.commit()
             last_row_id = cur.lastrowid
             if result == None or result == []:
-                return {"code": 201, 'lastrowid': last_row_id}
+                return {"code": 201}
             else:
+                if last_row_id == 0:
+                    return {"code": 200, "data": result}
                 return {"code": 200, "data": result, 'lastrowid': last_row_id}
         except sqlite3.Error as er:
-            print(str(er))
-            return {"code": 400}
+            return {"code": 400, 'eror': str(er)}
         finally:
             conn.close()
