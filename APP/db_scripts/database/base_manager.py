@@ -1,14 +1,15 @@
 import sqlite3
 import os
-from .settings import DATA_PATH
+from .settings import DATA_PATH, DB_PATH
 
 
 class DBManager:
-    def __init__(self, db_path: str):
-        self.db_path = db_path
+    def __init__(self):
+        self.db_path = DB_PATH
         if not self.check_base():
             self.create_base()
-
+            
+            
     # Проверка есть ли БД
     def check_base(self) -> bool:
         return os.path.exists(self.db_path)
@@ -23,7 +24,7 @@ class DBManager:
     def create_base(self):
         conn, cur = self.connect_to_base()
         try:
-            cur.executescript(open(DATA_PATH).read())
+            cur.executescript(open(DATA_PATH, encoding="utf-8").read())
             conn.commit()
             print('Tables are created')
         except sqlite3.Error as ex:

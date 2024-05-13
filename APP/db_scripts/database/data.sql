@@ -1,18 +1,29 @@
-CREATE TABLE variety_thing (
+CREATE TABLE categories (
     id INT PRIMARY KEY,
-    name_variety VARCHAR(255)
+    name VARCHAR(255)
 );
 
-CREATE TABLE things (
+CREATE TABLE products (
     id INT PRIMARY KEY,
-    name_clothe VARCHAR(255),
+    name VARCHAR(255),
+    size VARCHAR(255),
     price INT,
-    FOREIGN KEY (variety_thing) REFERENCES variety_thing(id)
+    quantity_in_stock INT,
+    category_id INT,
+    FOREIGN KEY (category_id) REFERENCES categories(id)
 );
 
-CREATE TABLE statuses (
+CREATE TABLE supplies (
     id INT PRIMARY KEY,
-    name_status VARCHAR(255)
+    data DATE,
+    quantity INT,
+    products_id INT,
+    FOREIGN KEY (products_id) REFERENCES products(id)
+);
+
+CREATE TABLE posts (
+    id INT PRIMARY KEY,
+    name VARCHAR(255)
 );
 
 CREATE TABLE users (
@@ -21,41 +32,72 @@ CREATE TABLE users (
     addres VARCHAR(255),
     login VARCHAR(50),
     password VARCHAR(50),
-    FOREIGN KEY (id_status) REFERENCES statuses(id)
+    post_id INT,
+    FOREIGN KEY (post_id) REFERENCES posts(id)
 );
 
 CREATE TABLE orders (
     id INT PRIMARY KEY,
     comment TEXT,
-    data_create DATE,
-    FOREIGN KEY (id_seller) REFERENCES users(id),
-    FOREIGN KEY (id_buyer) REFERENCES users(id),
-    FOREIGN KEY (items) REFERENCES types_faults(tip_faults_id)
-    FOREIGN KEY (id_user) REFERENCES users(id),
-    FOREIGN KEY (id_client) REFERENCES clients(client_id)
+    data DATE,
+    price INT,
+    quantity INT,
+    products_id INT,
+    seller_id INT,
+    bayer_id INT,
+    FOREIGN KEY (products_id) REFERENCES products(id),
+    FOREIGN KEY (seller_id) REFERENCES users(id),
+    FOREIGN KEY (bayer_id) REFERENCES users(id)
 );
 
+INSERT INTO categories (id, name) VALUES
+(1, 'Футболки'),
+(2, 'Брюки'),
+(3, 'Платья'),
+(4, 'Рубашки'),
+(5, 'Юбки'),
+(6, 'Куртки'),
+(7, 'Джинсы'),
+(8, 'Пиджаки'),
+(9, 'Шорты'),
+(10, 'Пальто');
 
-INSERT INTO variety_thing (id, name_variety) VALUES 
-(1, 'платье'),
-(2, 'брюки'),
-(3, 'рубашка');
+INSERT INTO products (id, name, size, price, quantity_in_stock, category_id) VALUES
+(1, 'Футболка с принтом', 'S', 2000, 24, 1),
+(2, 'Футболка с принтом', 'M', 2000, 30, 1),
+(3, 'Белая футболка', 'M', 1500, 14, 1),
+(4, 'Белая футболка', 'S', 1500, 10, 1),
+(5, 'Брюки', 'S', 4000, 22, 2),
+(6, 'Брюки', 'M', 4000, 18, 2),
+(7, 'Платье', 'S', 6000, 11, 3),
+(8, 'Платье', 'M', 6000, 9, 3),
+(9, 'Рубашка', 'S', 3009, 16, 4),
+(10, 'Рубашка', 'M', 3000, 15, 4),
+(11, 'Юбка', 'S', 5000, 8, 5),
+(12, 'Юбка', 'M', 5000, 7, 5),
+(13, 'Куртка', 'S', 8000, 5, 6),
+(14, 'Куртка', 'M', 8000, 3, 6),
+(15, 'Джинсы', 'S', 3400, 13, 7),
+(16, 'Джинсы', 'M', 3400, 15, 7),
+(17, 'Пиджак 1', 'S', 5000, 4, 8),
+(18, 'Пиджак 2', 'M', 5000, 6, 8),
+(19, 'Шорты 1', 'S', 1500, 29, 9),
+(20, 'Шорты 2', 'M', 1500, 27, 9),
+(21, 'Пальто 1', 'S', 12000, 8, 10),
+(22, 'Пальто 1', 'M', 12000, 6, 10);
 
-INSERT INTO things (id, name_clothe, price, variety_thing) VALUES 
-(1, 'платье1', 1000, 1),
-(2, 'брюки1', 800, 2),
-(3, 'рубашка1', 600, 3);
-
-INSERT INTO statuses (id, name_status) VALUES 
+INSERT INTO posts (id, name) VALUES
 (1, 'Директор'),
-(2, 'Продавец'),
+(2, 'Кассир'),
 (3, 'Покупатель');
 
-INSERT INTO users (id, name, addres, login, password, id_status) VALUES 
-(1, 'Иванова Мария', 'ул. Ленина, д.1, кв. 5', 'maria', 'pass123', 1),
-(2, 'Петров Иван', 'ул. Пушкина, д.2, кв. 10', 'ivan', 'pass456', 2),
-(3, 'Сидорова Ольга', 'ул. Маяковского, д.3, кв. 15', 'olya', 'pass789', 3);
-
-INSERT INTO orders (id, comment, data_create, id_seller, id_buyer, items, id_user, id_client) VALUES 
-(1, 'Быстро нужно', '2024-05-11', 1, 2, 1, 3, 4),
-(2, 'Пожалуйста подождите', '2024-05-12', 2, 1, 3, 2, 1);
+INSERT INTO users (id, name, addres, login, password, post_id) VALUES
+(1, 'Директор', 'Инкогнито', 'admin', 'admin', 1),
+(2, 'Кассир 1', 'Address 2', 'kassir1', 'kassir1', 2),
+(3, 'Кассир 2', 'Address 3', 'kassir2', 'kassir2', 2),
+(4, 'Кассир 3', 'Address 4', 'kassir3', 'kassir3', 2),
+(5, 'Кассир 4', 'Address 5', 'kassir4', 'kassir4', 2),
+(6, 'User 1', 'Address 6', 'user1', 'user1', 3),
+(7, 'User 2', 'Address 7', 'user2', 'user2', 3),
+(8, 'User 3', 'Address 8', 'user3', 'user3', 3),
+(9, 'User 4', 'Address 9', 'user4', 'user4', 3);
