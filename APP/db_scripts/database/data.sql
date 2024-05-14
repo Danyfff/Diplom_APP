@@ -1,10 +1,10 @@
 CREATE TABLE categories (
-    id INT PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(255)
 );
 
 CREATE TABLE products (
-    id INT PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(255),
     size VARCHAR(255),
     price INT,
@@ -14,7 +14,7 @@ CREATE TABLE products (
 );
 
 CREATE TABLE supplies (
-    id INT PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     data DATE,
     quantity INT,
     products_id INT,
@@ -22,22 +22,23 @@ CREATE TABLE supplies (
 );
 
 CREATE TABLE posts (
-    id INT PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(255)
 );
 
 CREATE TABLE users (
-    id INT PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(255),
     addres VARCHAR(255),
     login VARCHAR(50),
     password VARCHAR(50),
     post_id INT,
-    FOREIGN KEY (post_id) REFERENCES posts(id)
+    FOREIGN KEY (post_id) REFERENCES posts(id),
+    UNIQUE (password) ON CONFLICT IGNORE
 );
 
 CREATE TABLE orders (
-    id INT PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     comment TEXT,
     data DATE,
     price INT,
