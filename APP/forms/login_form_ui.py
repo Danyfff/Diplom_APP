@@ -13,6 +13,7 @@ class Ui_LoginWindow(object):
     def setupUi(self, LoginWindow):
         LoginWindow.setObjectName("LoginWindow")
         LoginWindow.resize(223, 120)
+        LoginWindow.setStyleSheet("background-color: rgb(235, 231, 255);")
         LoginWindow.setTabShape(QtWidgets.QTabWidget.TabShape.Triangular)
         self.centralwidget = QtWidgets.QWidget(parent=LoginWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -24,6 +25,9 @@ class Ui_LoginWindow(object):
         self.verticalLayout.setObjectName("verticalLayout")
         self.login = QtWidgets.QLineEdit(parent=self.centralwidget)
         self.login.setAutoFillBackground(False)
+        self.login.setStyleSheet("background-color: rgb(235, 235, 245);\n"
+"border-radius: 5px;\n"
+"border: 1px solid dlack")
         self.login.setText("")
         self.login.setDragEnabled(False)
         self.login.setReadOnly(False)
@@ -37,6 +41,9 @@ class Ui_LoginWindow(object):
         self.password.setTabletTracking(False)
         self.password.setAcceptDrops(True)
         self.password.setAutoFillBackground(False)
+        self.password.setStyleSheet("background-color: rgb(235, 235, 245);\n"
+"border-radius: 5px;\n"
+"border: 1px solid dlack")
         self.password.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhHiddenText|QtCore.Qt.InputMethodHint.ImhNoAutoUppercase|QtCore.Qt.InputMethodHint.ImhNoPredictiveText|QtCore.Qt.InputMethodHint.ImhSensitiveData)
         self.password.setInputMask("")
         self.password.setText("")
@@ -54,13 +61,39 @@ class Ui_LoginWindow(object):
         spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout.addItem(spacerItem2)
         self.login_btn = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.login_btn.setStyleSheet("background-color: rgb(166, 255, 164);")
+        self.login_btn.setStyleSheet("QPushButton {\n"
+"    background-color: rgb(185, 196, 255);\n"
+"    padding: 5;\n"
+"    border:1px solid black;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(155, 155, 224);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(140, 140, 207);\n"
+"}")
         self.login_btn.setObjectName("login_btn")
         self.horizontalLayout.addWidget(self.login_btn)
         spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout.addItem(spacerItem3)
         self.registrate_btn = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.registrate_btn.setStyleSheet("background-color: rgb(169, 213, 255);")
+        self.registrate_btn.setStyleSheet("QPushButton {\n"
+"    background-color: rgb(185, 196, 255);\n"
+"    padding: 5;\n"
+"    border:1px solid black;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(155, 155, 224);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(140, 140, 207);\n"
+"}")
         self.registrate_btn.setObjectName("registrate_btn")
         self.horizontalLayout.addWidget(self.registrate_btn)
         spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
