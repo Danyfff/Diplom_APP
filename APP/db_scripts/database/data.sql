@@ -1,3 +1,8 @@
+CREATE TABLE sizes(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(255)
+);
+
 CREATE TABLE categories (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(255)
@@ -6,11 +11,12 @@ CREATE TABLE categories (
 CREATE TABLE products (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(255),
-    size VARCHAR(255),
+    size_id INT,
     price INT,
     quantity_in_stock INT,
     category_id INT,
     FOREIGN KEY (category_id) REFERENCES categories(id)
+    FOREIGN KEY (size_id) REFERENCES sizes(id)
 );
 
 CREATE TABLE supplies (
@@ -51,6 +57,16 @@ CREATE TABLE orders (
     FOREIGN KEY (bayer_id) REFERENCES users(id)
 );
 
+
+INSERT INTO sizes (id, name) VALUES
+(1, 'XXS'),
+(2, 'XS'),
+(3, 'S'),
+(4, 'M'),
+(5, 'L'),
+(6, 'XL'),
+(7, 'XXL');
+
 INSERT INTO categories (id, name) VALUES
 (1, 'Футболки'),
 (2, 'Брюки'),
@@ -63,29 +79,29 @@ INSERT INTO categories (id, name) VALUES
 (9, 'Шорты'),
 (10, 'Пальто');
 
-INSERT INTO products (id, name, size, price, quantity_in_stock, category_id) VALUES
-(1, 'Футболка с принтом', 'S', 2000, 24, 1),
-(2, 'Футболка с принтом', 'M', 2000, 30, 1),
-(3, 'Белая футболка', 'M', 1500, 14, 1),
-(4, 'Белая футболка', 'S', 1500, 10, 1),
-(5, 'Брюки', 'S', 4000, 22, 2),
-(6, 'Брюки', 'M', 4000, 18, 2),
-(7, 'Платье', 'S', 6000, 11, 3),
-(8, 'Платье', 'M', 6000, 9, 3),
-(9, 'Рубашка', 'S', 3009, 16, 4),
-(10, 'Рубашка', 'M', 3000, 15, 4),
-(11, 'Юбка', 'S', 5000, 8, 5),
-(12, 'Юбка', 'M', 5000, 7, 5),
-(13, 'Куртка', 'S', 8000, 5, 6),
-(14, 'Куртка', 'M', 8000, 3, 6),
-(15, 'Джинсы', 'S', 3400, 13, 7),
-(16, 'Джинсы', 'M', 3400, 15, 7),
-(17, 'Пиджак 1', 'S', 5000, 4, 8),
-(18, 'Пиджак 2', 'M', 5000, 6, 8),
-(19, 'Шорты 1', 'S', 1500, 29, 9),
-(20, 'Шорты 2', 'M', 1500, 27, 9),
-(21, 'Пальто 1', 'S', 12000, 8, 10),
-(22, 'Пальто 1', 'M', 12000, 6, 10);
+INSERT INTO products (id, name, size_id, price, quantity_in_stock, category_id) VALUES
+(1, 'Футболка с принтом', 4, 2000, 24, 1),
+(2, 'Футболка с принтом', 3, 2000, 30, 1),
+(3, 'Белая футболка', 4, 1500, 14, 1),
+(4, 'Белая футболка', 5, 1500, 10, 1),
+(5, 'Брюки', 6, 4000, 22, 2),
+(6, 'Брюки', 1, 4000, 18, 2),
+(7, 'Платье', 2, 6000, 11, 3),
+(8, 'Платье', 3, 6000, 9, 3),
+(9, 'Рубашка', 4, 3009, 16, 4),
+(10, 'Рубашка', 7, 3000, 15, 4),
+(11, 'Юбка', 3, 5000, 8, 5),
+(12, 'Юбка', 2, 5000, 7, 5),
+(13, 'Куртка', 3, 8000, 5, 6),
+(14, 'Куртка', 4, 8000, 3, 6),
+(15, 'Джинсы', 4, 3400, 13, 7),
+(16, 'Джинсы', 3, 3400, 15, 7),
+(17, 'Пиджак', 6, 5000, 4, 8),
+(18, 'Пиджак', 3, 5000, 6, 8),
+(19, 'Шорты', 4, 1500, 29, 9),
+(20, 'Шорты', 3, 1500, 27, 9),
+(21, 'Пальто', 2, 12000, 8, 10),
+(22, 'Пальто', 3, 12000, 6, 10);
 
 INSERT INTO posts (id, name) VALUES
 (1, 'Директор'),
@@ -93,12 +109,12 @@ INSERT INTO posts (id, name) VALUES
 (3, 'Покупатель');
 
 INSERT INTO users (id, name, addres, login, password, post_id) VALUES
-(1, 'Директор', 'Инкогнито', 'admin', 'admin', 1),
-(2, 'Кассир 1', 'Address 2', 'kassir1', 'kassir1', 2),
-(3, 'Кассир 2', 'Address 3', 'kassir2', 'kassir2', 2),
-(4, 'Кассир 3', 'Address 4', 'kassir3', 'kassir3', 2),
-(5, 'Кассир 4', 'Address 5', 'kassir4', 'kassir4', 2),
-(6, 'User 1', 'Address 6', 'user1', 'user1', 3),
-(7, 'User 2', 'Address 7', 'user2', 'user2', 3),
-(8, 'User 3', 'Address 8', 'user3', 'user3', 3),
-(9, 'User 4', 'Address 9', 'user4', 'user4', 3);
+(1, 'Александр', 'шоссе Будапештсткая, 73', 'admin', 'admin', 1),
+(2, 'Сергей', 'пр. Чехова, 20', 'kassir1', 'kassir1', 2),
+(3, 'Марина', 'ул. Гоголя, 26', 'kassir2', 'kassir2', 2),
+(4, 'Евгений', 'пер. Ленина, 30', 'kassir3', 'kassir3', 2),
+(5, 'Дмитрий', 'проезд Балканская, 53', 'kassir4', 'kassir4', 2),
+(6, 'Даниил', 'пр. Балканская, 08', 'user1', 'user1', 3),
+(7, 'Василий', 'проезд Ленина, 95', 'user2', 'user2', 3),
+(8, 'Кирилл', 'ул. Ладыгина, 25', 'user3', 'user3', 3),
+(9, 'Кристина', 'пер. Гоголя, 78', 'user4', 'user4', 3);
