@@ -31,6 +31,44 @@ class Data(DBManager):
                 args=(id_item, ), many=False)
         
         return req
+    
+    def get_all_categories(self):
+        '''Получение всех существующих категорий'''
 
+        categories = {}
+        
+        req = self.execute("SELECT * "
+                "FROM categories ")
+        
+        if req['code'] == 200:
+            for cat in req['data']:
+                categories[cat[1]] = cat[0]
+                
+            return categories
+    
+    def get_all_sizes(self):
+        '''Получение всех существующих размеров'''
+        
+        sizes = {}
+    
+        req = self.execute("SELECT * "
+                "FROM sizes ")
+        
+        if req['code'] == 200:
+            for cat in req['data']:
+                sizes[cat[1]] = cat[0]
+                
+            return sizes
+        
+    def create_product(self, name, size_id, price, quantity, category_id):
+        '''Создание нового товара'''
+        
+        req = self.execute("INSERT INTO products(name, size_id, price, quantity_in_stock, category_id) "
+                        "VALUES (?, ?, ?, ? ,?) ", 
+                        args=(name, size_id, price, quantity, category_id, ), many=False)
+        
+        return req
+        
 data = Data()
+
 

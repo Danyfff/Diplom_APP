@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>782</width>
-    <height>386</height>
+    <width>833</width>
+    <height>420</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -54,7 +54,7 @@
            <widget class="QTableWidget" name="table_data">
             <property name="minimumSize">
              <size>
-              <width>550</width>
+              <width>650</width>
               <height>350</height>
              </size>
             </property>
@@ -76,6 +76,12 @@ border: 1px solid dlack
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <item>
              <layout class="QVBoxLayout" name="verticalLayout">
+              <property name="leftMargin">
+               <number>5</number>
+              </property>
+              <property name="rightMargin">
+               <number>5</number>
+              </property>
               <item>
                <widget class="QSplitter" name="splitter">
                 <property name="styleSheet">
@@ -225,7 +231,7 @@ border-radius: 5px;</string>
                 <property name="styleSheet">
                  <string notr="true">QPushButton {
 	background-color: rgb(185, 196, 255);
-	padding: 3, 6;
+	padding: 5 10 5 10;
 	border:1px solid black;
 	border-radius: 5px;
 }
@@ -254,7 +260,7 @@ QPushButton:pressed {
                 <property name="styleSheet">
                  <string notr="true">QPushButton {
 	background-color: rgb(185, 196, 255);
-	padding: 3, 6;
+	padding: 5 10 5 10;
 	border:1px solid black;
 	border-radius: 5px;
 }
@@ -277,7 +283,7 @@ QPushButton:pressed {
                 <property name="styleSheet">
                  <string notr="true">QPushButton {
 	background-color: rgb(185, 196, 255);
-	padding: 3, 6;
+	padding: 5 10 5 10;
 	border:1px solid black;
 	border-radius: 5px;
 }
@@ -300,7 +306,7 @@ QPushButton:pressed {
                 <property name="styleSheet">
                  <string notr="true">QPushButton {
 	background-color: rgb(185, 196, 255);
-	padding: 3, 6;
+	padding: 5 10 5 10;
 	border:1px solid black;
 	border-radius: 5px;
 }
@@ -319,11 +325,34 @@ QPushButton:pressed {
                </widget>
               </item>
               <item>
+               <widget class="QPushButton" name="pushButton">
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+	background-color: rgb(185, 196, 255);
+	padding: 5 10 5 10;
+	border:1px solid black;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+	background-color: rgb(155, 155, 224);
+}
+
+QPushButton:pressed {
+	background-color: rgb(140, 140, 207);
+}</string>
+                </property>
+                <property name="text">
+                 <string>Заказы в ожидании</string>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QPushButton" name="users_btn">
                 <property name="styleSheet">
                  <string notr="true">QPushButton {
 	background-color: rgb(185, 196, 255);
-	padding: 3, 6;
+	padding: 5 10 5 10;
 	border:1px solid black;
 	border-radius: 5px;
 }
@@ -346,7 +375,7 @@ QPushButton:pressed {
                 <property name="styleSheet">
                  <string notr="true">QPushButton {
 	background-color: rgb(185, 196, 255);
-	padding: 3, 6;
+	padding: 5 10 5 10;
 	border:1px solid black;
 	border-radius: 5px;
 }
@@ -369,7 +398,7 @@ QPushButton:pressed {
                 <property name="styleSheet">
                  <string notr="true">QPushButton {
 	background-color: rgb(185, 196, 255);
-	padding: 3, 6;
+	padding: 5 10 5 10;
 	border:1px solid black;
 	border-radius: 5px;
 }
@@ -388,19 +417,6 @@ QPushButton:pressed {
                </widget>
               </item>
              </layout>
-            </item>
-            <item>
-             <spacer name="verticalSpacer">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>60</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
             </item>
             <item>
              <spacer name="horizontalSpacer">

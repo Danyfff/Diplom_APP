@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>223</width>
-    <height>120</height>
+    <width>226</width>
+    <height>116</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -142,10 +142,16 @@ border: 1px solid dlack</string>
         </item>
         <item>
          <widget class="QPushButton" name="login_btn">
+          <property name="minimumSize">
+           <size>
+            <width>90</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="styleSheet">
            <string notr="true">QPushButton {
 	background-color: rgb(185, 196, 255);
-	padding: 5;
+	padding: 5 10 5 10;
 	border:1px solid black;
 	border-radius: 5px;
 }
@@ -178,10 +184,16 @@ QPushButton:pressed {
         </item>
         <item>
          <widget class="QPushButton" name="registrate_btn">
+          <property name="minimumSize">
+           <size>
+            <width>90</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="styleSheet">
            <string notr="true">QPushButton {
 	background-color: rgb(185, 196, 255);
-	padding: 5;
+	padding: 5 10 5 10;
 	border:1px solid black;
 	border-radius: 5px;
 }

@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_LoginWindow(object):
     def setupUi(self, LoginWindow):
         LoginWindow.setObjectName("LoginWindow")
-        LoginWindow.resize(223, 120)
+        LoginWindow.resize(226, 116)
         LoginWindow.setStyleSheet("background-color: rgb(235, 231, 255);")
         LoginWindow.setTabShape(QtWidgets.QTabWidget.TabShape.Triangular)
         self.centralwidget = QtWidgets.QWidget(parent=LoginWindow)
@@ -61,9 +61,10 @@ class Ui_LoginWindow(object):
         spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout.addItem(spacerItem2)
         self.login_btn = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.login_btn.setMinimumSize(QtCore.QSize(90, 0))
         self.login_btn.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(185, 196, 255);\n"
-"    padding: 5;\n"
+"    padding: 5 10 5 10;\n"
 "    border:1px solid black;\n"
 "    border-radius: 5px;\n"
 "}\n"
@@ -80,9 +81,10 @@ class Ui_LoginWindow(object):
         spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout.addItem(spacerItem3)
         self.registrate_btn = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.registrate_btn.setMinimumSize(QtCore.QSize(90, 0))
         self.registrate_btn.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(185, 196, 255);\n"
-"    padding: 5;\n"
+"    padding: 5 10 5 10;\n"
 "    border:1px solid black;\n"
 "    border-radius: 5px;\n"
 "}\n"

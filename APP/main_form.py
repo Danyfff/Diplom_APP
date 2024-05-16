@@ -2,9 +2,13 @@ from PyQt6.QtWidgets import QMainWindow, QTableWidgetItem
 from .forms.main_form_ui import Ui_MainWindow
 from .db_scripts.user_scripts import user
 from .db_scripts.data_scripts import data
+from .create_product_form import CreateProductWindow
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
+    
+    main_window: QMainWindow
+    
     def __init__(self):
         super().__init__()
         self.setupUi(self)
@@ -15,6 +19,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.post_text.setText(user.post)
         
         self.products_btn.clicked.connect(self.get_all_products)
+        self.create_product_btn.clicked.connect(self.create_product)
         self.users_btn.clicked.connect(self.get_all_users)
         
     def clear_table(self):
@@ -63,3 +68,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.table_data.setItem(col_row, 1, QTableWidgetItem(str(us[2])))
             self.table_data.setItem(col_row, 2, QTableWidgetItem(str(user.get_user_post(us[3]))))
             col_row += 1
+            
+    def create_product(self):
+        self.main_window = CreateProductWindow()
+        self.main_window.show()

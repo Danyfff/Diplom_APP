@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(782, 386)
+        MainWindow.resize(833, 420)
         MainWindow.setStyleSheet("background-color: rgb(235, 231, 255);")
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -29,7 +29,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.table_data = QtWidgets.QTableWidget(parent=self.centralwidget)
-        self.table_data.setMinimumSize(QtCore.QSize(550, 350))
+        self.table_data.setMinimumSize(QtCore.QSize(650, 350))
         self.table_data.setStyleSheet("background-color: rgb(253, 253, 255);\n"
 "border-radius: 5px;\n"
 "border: 1px solid dlack\n"
@@ -43,6 +43,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_2 = QtWidgets.QVBoxLayout()
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayout.setContentsMargins(5, -1, 5, -1)
         self.verticalLayout.setObjectName("verticalLayout")
         self.splitter = QtWidgets.QSplitter(parent=self.centralwidget)
         self.splitter.setStyleSheet("background-color: rgb(199, 212, 255);\n"
@@ -117,7 +118,7 @@ class Ui_MainWindow(object):
         self.products_btn = QtWidgets.QPushButton(parent=self.centralwidget)
         self.products_btn.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(185, 196, 255);\n"
-"    padding: 3, 6;\n"
+"    padding: 5 10 5 10;\n"
 "    border:1px solid black;\n"
 "    border-radius: 5px;\n"
 "}\n"
@@ -139,7 +140,7 @@ class Ui_MainWindow(object):
         self.create_product_btn.setSizePolicy(sizePolicy)
         self.create_product_btn.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(185, 196, 255);\n"
-"    padding: 3, 6;\n"
+"    padding: 5 10 5 10;\n"
 "    border:1px solid black;\n"
 "    border-radius: 5px;\n"
 "}\n"
@@ -156,7 +157,7 @@ class Ui_MainWindow(object):
         self.orders_btn = QtWidgets.QPushButton(parent=self.centralwidget)
         self.orders_btn.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(185, 196, 255);\n"
-"    padding: 3, 6;\n"
+"    padding: 5 10 5 10;\n"
 "    border:1px solid black;\n"
 "    border-radius: 5px;\n"
 "}\n"
@@ -173,7 +174,7 @@ class Ui_MainWindow(object):
         self.create_order_btn = QtWidgets.QPushButton(parent=self.centralwidget)
         self.create_order_btn.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(185, 196, 255);\n"
-"    padding: 3, 6;\n"
+"    padding: 5 10 5 10;\n"
 "    border:1px solid black;\n"
 "    border-radius: 5px;\n"
 "}\n"
@@ -187,10 +188,27 @@ class Ui_MainWindow(object):
 "}")
         self.create_order_btn.setObjectName("create_order_btn")
         self.verticalLayout.addWidget(self.create_order_btn)
+        self.pushButton = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.pushButton.setStyleSheet("QPushButton {\n"
+"    background-color: rgb(185, 196, 255);\n"
+"    padding: 5 10 5 10;\n"
+"    border:1px solid black;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(155, 155, 224);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(140, 140, 207);\n"
+"}")
+        self.pushButton.setObjectName("pushButton")
+        self.verticalLayout.addWidget(self.pushButton)
         self.users_btn = QtWidgets.QPushButton(parent=self.centralwidget)
         self.users_btn.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(185, 196, 255);\n"
-"    padding: 3, 6;\n"
+"    padding: 5 10 5 10;\n"
 "    border:1px solid black;\n"
 "    border-radius: 5px;\n"
 "}\n"
@@ -207,7 +225,7 @@ class Ui_MainWindow(object):
         self.supplies_btn = QtWidgets.QPushButton(parent=self.centralwidget)
         self.supplies_btn.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(185, 196, 255);\n"
-"    padding: 3, 6;\n"
+"    padding: 5 10 5 10;\n"
 "    border:1px solid black;\n"
 "    border-radius: 5px;\n"
 "}\n"
@@ -224,7 +242,7 @@ class Ui_MainWindow(object):
         self.create_supplies_btn = QtWidgets.QPushButton(parent=self.centralwidget)
         self.create_supplies_btn.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(185, 196, 255);\n"
-"    padding: 3, 6;\n"
+"    padding: 5 10 5 10;\n"
 "    border:1px solid black;\n"
 "    border-radius: 5px;\n"
 "}\n"
@@ -239,17 +257,15 @@ class Ui_MainWindow(object):
         self.create_supplies_btn.setObjectName("create_supplies_btn")
         self.verticalLayout.addWidget(self.create_supplies_btn)
         self.verticalLayout_2.addLayout(self.verticalLayout)
-        spacerItem2 = QtWidgets.QSpacerItem(60, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        spacerItem2 = QtWidgets.QSpacerItem(60, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.verticalLayout_2.addItem(spacerItem2)
-        spacerItem3 = QtWidgets.QSpacerItem(60, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.verticalLayout_2.addItem(spacerItem3)
         self.horizontalLayout_3.addLayout(self.verticalLayout_2)
         self.verticalLayout_3.addLayout(self.horizontalLayout_3)
-        spacerItem4 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        self.verticalLayout_3.addItem(spacerItem4)
+        spacerItem3 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        self.verticalLayout_3.addItem(spacerItem3)
         self.horizontalLayout_4.addLayout(self.verticalLayout_3)
-        spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_4.addItem(spacerItem5)
+        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_4.addItem(spacerItem4)
         self.verticalLayout_4.addLayout(self.horizontalLayout_4)
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -265,6 +281,7 @@ class Ui_MainWindow(object):
         self.create_product_btn.setText(_translate("MainWindow", "Добавить товар"))
         self.orders_btn.setText(_translate("MainWindow", "Заказы"))
         self.create_order_btn.setText(_translate("MainWindow", "Создание заказа"))
+        self.pushButton.setText(_translate("MainWindow", "Заказы в ожидании"))
         self.users_btn.setText(_translate("MainWindow", "Пользователи"))
         self.supplies_btn.setText(_translate("MainWindow", "Поставки"))
         self.create_supplies_btn.setText(_translate("MainWindow", "Создание поставки"))
