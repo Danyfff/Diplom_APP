@@ -28,8 +28,8 @@ CREATE TABLE supplies (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     data DATE,
     quantity INT,
-    products_id INT,
-    FOREIGN KEY (products_id) REFERENCES products(id)
+    product_id INT,
+    FOREIGN KEY (product_id) REFERENCES products(id)
 );
 
 CREATE TABLE posts (
