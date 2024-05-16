@@ -68,6 +68,15 @@ class Data(DBManager):
                         args=(name, size_id, price, quantity, category_id, ), many=False)
         
         return req
+    
+    def delete_product(self, id_product):
+        '''Удаление товара по его id'''
+        
+        req = self.execute("DELETE FROM products "
+                         "WHERE id = ?",
+                        args=(id_product, ))
+        
+        return req
         
 data = Data()
 

@@ -12,24 +12,20 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(833, 420)
+        MainWindow.resize(922, 412)
         MainWindow.setStyleSheet("background-color: rgb(235, 231, 255);")
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.centralwidget)
-        self.verticalLayout_4.setObjectName("verticalLayout_4")
+        self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.centralwidget)
+        self.horizontalLayout_5.setObjectName("horizontalLayout_5")
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_4.addItem(spacerItem)
         self.verticalLayout_3 = QtWidgets.QVBoxLayout()
         self.verticalLayout_3.setObjectName("verticalLayout_3")
-        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        self.verticalLayout_3.addItem(spacerItem1)
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.table_data = QtWidgets.QTableWidget(parent=self.centralwidget)
-        self.table_data.setMinimumSize(QtCore.QSize(650, 350))
+        self.table_data.setMinimumSize(QtCore.QSize(700, 350))
         self.table_data.setStyleSheet("background-color: rgb(253, 253, 255);\n"
 "border-radius: 5px;\n"
 "border: 1px solid dlack\n"
@@ -46,6 +42,13 @@ class Ui_MainWindow(object):
         self.verticalLayout.setContentsMargins(5, -1, 5, -1)
         self.verticalLayout.setObjectName("verticalLayout")
         self.splitter = QtWidgets.QSplitter(parent=self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.splitter.sizePolicy().hasHeightForWidth())
+        self.splitter.setSizePolicy(sizePolicy)
+        self.splitter.setMinimumSize(QtCore.QSize(180, 80))
+        self.splitter.setMaximumSize(QtCore.QSize(230, 80))
         self.splitter.setStyleSheet("background-color: rgb(199, 212, 255);\n"
 "padding: 5, 5, 5, 0;\n"
 "border-radius: 5px;")
@@ -64,6 +67,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
         self.label.setSizePolicy(sizePolicy)
         self.label.setMinimumSize(QtCore.QSize(30, 40))
+        self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.label.setObjectName("label")
         self.horizontalLayout.addWidget(self.label)
         self.name_text = QtWidgets.QLabel(parent=self.layoutWidget)
@@ -78,7 +82,6 @@ class Ui_MainWindow(object):
         font.setPointSize(14)
         self.name_text.setFont(font)
         self.name_text.setStyleSheet("")
-        self.name_text.setText("")
         self.name_text.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.name_text.setObjectName("name_text")
         self.horizontalLayout.addWidget(self.name_text)
@@ -97,6 +100,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(7)
         self.label_2.setFont(font)
+        self.label_2.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.label_2.setObjectName("label_2")
         self.horizontalLayout_2.addWidget(self.label_2)
         self.post_text = QtWidgets.QLabel(parent=self.layoutWidget1)
@@ -111,11 +115,12 @@ class Ui_MainWindow(object):
         font.setItalic(True)
         font.setKerning(False)
         self.post_text.setFont(font)
-        self.post_text.setText("")
+        self.post_text.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.post_text.setObjectName("post_text")
         self.horizontalLayout_2.addWidget(self.post_text)
         self.verticalLayout.addWidget(self.splitter)
         self.products_btn = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.products_btn.setMaximumSize(QtCore.QSize(230, 16777215))
         self.products_btn.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(185, 196, 255);\n"
 "    padding: 5 10 5 10;\n"
@@ -138,6 +143,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.create_product_btn.sizePolicy().hasHeightForWidth())
         self.create_product_btn.setSizePolicy(sizePolicy)
+        self.create_product_btn.setMaximumSize(QtCore.QSize(230, 16777215))
         self.create_product_btn.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(185, 196, 255);\n"
 "    padding: 5 10 5 10;\n"
@@ -155,6 +161,7 @@ class Ui_MainWindow(object):
         self.create_product_btn.setObjectName("create_product_btn")
         self.verticalLayout.addWidget(self.create_product_btn)
         self.orders_btn = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.orders_btn.setMaximumSize(QtCore.QSize(230, 16777215))
         self.orders_btn.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(185, 196, 255);\n"
 "    padding: 5 10 5 10;\n"
@@ -172,6 +179,7 @@ class Ui_MainWindow(object):
         self.orders_btn.setObjectName("orders_btn")
         self.verticalLayout.addWidget(self.orders_btn)
         self.create_order_btn = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.create_order_btn.setMaximumSize(QtCore.QSize(230, 16777215))
         self.create_order_btn.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(185, 196, 255);\n"
 "    padding: 5 10 5 10;\n"
@@ -188,8 +196,9 @@ class Ui_MainWindow(object):
 "}")
         self.create_order_btn.setObjectName("create_order_btn")
         self.verticalLayout.addWidget(self.create_order_btn)
-        self.pushButton = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.pushButton.setStyleSheet("QPushButton {\n"
+        self.orders_waiting_btn = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.orders_waiting_btn.setMaximumSize(QtCore.QSize(230, 16777215))
+        self.orders_waiting_btn.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(185, 196, 255);\n"
 "    padding: 5 10 5 10;\n"
 "    border:1px solid black;\n"
@@ -203,9 +212,10 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {\n"
 "    background-color: rgb(140, 140, 207);\n"
 "}")
-        self.pushButton.setObjectName("pushButton")
-        self.verticalLayout.addWidget(self.pushButton)
+        self.orders_waiting_btn.setObjectName("orders_waiting_btn")
+        self.verticalLayout.addWidget(self.orders_waiting_btn)
         self.users_btn = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.users_btn.setMaximumSize(QtCore.QSize(230, 16777215))
         self.users_btn.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(185, 196, 255);\n"
 "    padding: 5 10 5 10;\n"
@@ -223,6 +233,7 @@ class Ui_MainWindow(object):
         self.users_btn.setObjectName("users_btn")
         self.verticalLayout.addWidget(self.users_btn)
         self.supplies_btn = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.supplies_btn.setMaximumSize(QtCore.QSize(230, 16777215))
         self.supplies_btn.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(185, 196, 255);\n"
 "    padding: 5 10 5 10;\n"
@@ -240,6 +251,7 @@ class Ui_MainWindow(object):
         self.supplies_btn.setObjectName("supplies_btn")
         self.verticalLayout.addWidget(self.supplies_btn)
         self.create_supplies_btn = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.create_supplies_btn.setMaximumSize(QtCore.QSize(230, 16777215))
         self.create_supplies_btn.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(185, 196, 255);\n"
 "    padding: 5 10 5 10;\n"
@@ -256,17 +268,15 @@ class Ui_MainWindow(object):
 "}")
         self.create_supplies_btn.setObjectName("create_supplies_btn")
         self.verticalLayout.addWidget(self.create_supplies_btn)
+        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        self.verticalLayout.addItem(spacerItem)
         self.verticalLayout_2.addLayout(self.verticalLayout)
-        spacerItem2 = QtWidgets.QSpacerItem(60, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.verticalLayout_2.addItem(spacerItem2)
+        spacerItem1 = QtWidgets.QSpacerItem(60, 20, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.verticalLayout_2.addItem(spacerItem1)
         self.horizontalLayout_3.addLayout(self.verticalLayout_2)
         self.verticalLayout_3.addLayout(self.horizontalLayout_3)
-        spacerItem3 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
-        self.verticalLayout_3.addItem(spacerItem3)
         self.horizontalLayout_4.addLayout(self.verticalLayout_3)
-        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_4.addItem(spacerItem4)
-        self.verticalLayout_4.addLayout(self.horizontalLayout_4)
+        self.horizontalLayout_5.addLayout(self.horizontalLayout_4)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -276,12 +286,14 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "Имя:"))
+        self.name_text.setText(_translate("MainWindow", "Директор"))
         self.label_2.setText(_translate("MainWindow", "Роль:"))
+        self.post_text.setText(_translate("MainWindow", "Директор"))
         self.products_btn.setText(_translate("MainWindow", "Каталог"))
         self.create_product_btn.setText(_translate("MainWindow", "Добавить товар"))
         self.orders_btn.setText(_translate("MainWindow", "Заказы"))
         self.create_order_btn.setText(_translate("MainWindow", "Создание заказа"))
-        self.pushButton.setText(_translate("MainWindow", "Заказы в ожидании"))
+        self.orders_waiting_btn.setText(_translate("MainWindow", "Заказы в ожидании"))
         self.users_btn.setText(_translate("MainWindow", "Пользователи"))
         self.supplies_btn.setText(_translate("MainWindow", "Поставки"))
         self.create_supplies_btn.setText(_translate("MainWindow", "Создание поставки"))
