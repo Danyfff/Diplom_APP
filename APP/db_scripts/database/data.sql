@@ -1,6 +1,11 @@
-CREATE TABLE sizes(
+CREATE TABLE sizes (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(255)
+);
+
+CREATE TABLE statuses (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(50)
 );
 
 CREATE TABLE categories (
@@ -52,11 +57,17 @@ CREATE TABLE orders (
     products_id INT,
     seller_id INT,
     bayer_id INT,
+    status_id INT,
     FOREIGN KEY (products_id) REFERENCES products(id),
     FOREIGN KEY (seller_id) REFERENCES users(id),
-    FOREIGN KEY (bayer_id) REFERENCES users(id)
+    FOREIGN KEY (bayer_id) REFERENCES users(id),
+    FOREIGN KEY (status_id) REFERENCES statuses(id)
 );
 
+
+INSERT INTO statuses (id, name) VALUES
+(1, 'В обработке'),
+(2, 'Выдан');
 
 INSERT INTO sizes (id, name) VALUES
 (1, 'XXS'),
