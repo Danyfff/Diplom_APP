@@ -54,11 +54,11 @@ CREATE TABLE orders (
     data DATE,
     price INT,
     quantity INT,
-    products_id INT,
+    product_id INT,
     seller_id INT,
     bayer_id INT,
     status_id INT,
-    FOREIGN KEY (products_id) REFERENCES products(id),
+    FOREIGN KEY (product_id) REFERENCES products(id),
     FOREIGN KEY (seller_id) REFERENCES users(id),
     FOREIGN KEY (bayer_id) REFERENCES users(id),
     FOREIGN KEY (status_id) REFERENCES statuses(id)
