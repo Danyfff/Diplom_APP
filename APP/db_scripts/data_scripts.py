@@ -12,23 +12,23 @@ class Data(DBManager):
         
         return req
     
-    def get_categories_item(self, id_item):
-        '''Получение категории товара по его id'''
+    def get_categories(self, id_cat):
+        '''Получение категорию по его id'''
     
         req = self.execute("SELECT name "
                 "FROM categories "
                 "WHERE id= ? ",
-                args=(id_item, ), many=False)
+                args=(id_cat, ), many=False)
         
         return req
     
-    def get_size_item(self, id_item):
+    def get_size(self, id_size):
         '''Получение размера товара по его id'''
     
         req = self.execute("SELECT name "
                 "FROM sizes "
                 "WHERE id= ? ",
-                args=(id_item, ), many=False)
+                args=(id_size, ), many=False)
         
         return req
     
@@ -79,5 +79,3 @@ class Data(DBManager):
         return req
         
 data = Data()
-
-

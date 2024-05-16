@@ -53,9 +53,18 @@ class User(DBManager):
         return req
     
     def get_all_users(self):
-        '''Созжание пользователя'''
+        '''Получение всех пользователей'''
         req = self.execute("SELECT id, name, addres, post_id "
                         "FROM users ")
+        
+        return req
+    
+    def get_all_users_by_post(self, post_id):
+        '''получение пользователей с определенной ролью'''
+        req = self.execute("SELECT id, name "
+                        "FROM users "
+                        "WHERE post_id= ? ", 
+                        args=(post_id, ))
         
         return req
     

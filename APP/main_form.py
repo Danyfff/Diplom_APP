@@ -3,6 +3,7 @@ from .forms.main_form_ui import Ui_MainWindow
 from .db_scripts.user_scripts import user
 from .db_scripts.data_scripts import data
 from .create_product_form import CreateProductWindow
+from .create_order_form import CreateOrderWindow
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -55,24 +56,27 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         self.table_data.setRowCount(row) 
         if user.post_id == 3:
-            self.table_data.setColumnCount(5)
-        else:
             self.table_data.setColumnCount(6)
+        else:
+            self.table_data.setColumnCount(7)
         self.table_data.setHorizontalHeaderLabels(
-            ['Название', 'Размер', 'Цена', 'Наличие', 'Категория', '']) 
+            ['Название', 'Размер', 'Цена', 'Наличие', 'Категория', '', '']) 
         
         
         for prod in products:
             self.table_data.setItem(col_row, 0, QTableWidgetItem(str(prod[1])))
-            self.table_data.setItem(col_row, 1, QTableWidgetItem(str(data.get_size_item(prod[2])['data'][0])))
+            self.table_data.setItem(col_row, 1, QTableWidgetItem(str(data.get_size(prod[2])['data'][0])))
             self.table_data.setItem(col_row, 2, QTableWidgetItem(str(prod[3]) + ' Руб.'))
             self.table_data.setItem(col_row, 3, QTableWidgetItem(str(prod[4])))
-            self.table_data.setItem(col_row, 4, QTableWidgetItem(str(data.get_categories_item(prod[5])['data'][0])))
+            self.table_data.setItem(col_row, 4, QTableWidgetItem(str(data.get_categories(prod[5])['data'][0])))
+            self.delte_product_btn =  QPushButton('Заказать')
+            self.delte_product_btn.clicked.connect(lambda _, data=prod: self.create_order_button_clicked(data))
+            self.table_data.setCellWidget(col_row, 5, self.delte_product_btn)
             
             if user.post_id != 3:
                 self.delte_product_btn =  QPushButton('Удалить')
-                self.delte_product_btn.clicked.connect(lambda _, id=prod[0]: self.on_button_clicked(id))
-                self.table_data.setCellWidget(col_row, 5, self.delte_product_btn)
+                self.delte_product_btn.clicked.connect(lambda _, id=prod: self.delete_product_button_clicked(id))
+                self.table_data.setCellWidget(col_row, 6, self.delte_product_btn)
             
             col_row += 1
             
@@ -101,7 +105,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.main_window = CreateProductWindow()
         self.main_window.show()
         
-    def on_button_clicked(self, id):
+    def delete_product_button_clicked(self, id):
         '''Удаление продукта по id при нажатии на кнопку удаления в каталоге'''
         data.delete_product(id)
         self.get_all_products()
+        
+    def create_order_button_clicked(self, data):
+        '''Открытие окна с созданием заказа'''
+        print(data)
+        self.main_window = CreateOrderWindow(data)
+        self.main_window.show()
