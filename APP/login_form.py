@@ -1,4 +1,3 @@
-from PyQt6.QtCore import pyqtSignal
 from PyQt6.QtWidgets import QMainWindow
 from .forms.login_form_ui import Ui_LoginWindow
 from .db_scripts.user_scripts import user
@@ -7,7 +6,6 @@ from .main_form import MainWindow
 
 class Login(QMainWindow, Ui_LoginWindow):
 
-    login_correct = pyqtSignal()
     main_window: QMainWindow
 
     def __init__(self):
