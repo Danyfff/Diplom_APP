@@ -39,14 +39,11 @@ class DBManager:
             res = cur.execute(query, args)
             result = res.fetchall() if many else res.fetchone()
             conn.commit()
-            last_row_id = cur.lastrowid
             if result == None or result == []:
-                return {"code": 201}
+                return {"code": 201, "data": None}
             else:
-                if last_row_id == 0:
-                    return {"code": 200, "data": result}
-                return {"code": 200, "data": result, 'lastrowid': last_row_id}
+                return {"code": 200, "data": result}
         except sqlite3.Error as er:
-            return {"code": 400, 'eror': str(er)}
+            return {"code": 400, "data": {'eror': str(er)}}
         finally:
             conn.close()
