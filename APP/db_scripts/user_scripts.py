@@ -9,25 +9,9 @@ class User(DBManager):
         self.post_id = int
         self.post = str
     
-    def get_user_post(self, id_user):
-        '''Получение '''
-        
-        req = self.execute("SELECT name "
-                        "FROM posts "
-                        "WHERE id= ? ", 
-                        args=(id_user, ), many=False)
-        
-        return req['data'][0]
-    
-    
-    def check_user(self, password: str, login: str):
-        '''Проверка есть ли пользователь
-        
-        Response from the database:
-        ['data'][0] = id;
-        ['data'][1] = name;
-        ['data'][2] = addres;
-        ['data'][3] = post_id'''
+    #Запросы связанные с пользователем
+    def check_user(self, password, login):
+        '''Проверка есть ли пользователь'''
         
         req = self.execute("SELECT id, name, addres, post_id "
                         "FROM users "
@@ -39,33 +23,73 @@ class User(DBManager):
             self.name = req['data'][1]
             self.addres = req['data'][2]
             self.post_id = req['data'][3]
-            self.post = self.get_user_post(self.post_id)
-            req['data'] = {'id': self.id, 'name': self.name, 'addres': self.addres, 'post_id': self.post}
+            self.post = self.get_post(self.post_id)
+            return True
+        else:
+            return False
         
-        return req
+    def create_user(self, name, addres, login, password, post_id=3):
+        '''Создание пользователя'''
         
-    def create_user(self, password: str, login: str):
-        '''Созжание пользователя'''
-        req = self.execute("INSERT INTO users(login, password, post_id) "
-                        "VALUES (?, ?, 3) ", 
-                        args=(login, password, ), many=False)
+        req = self.execute("INSERT INTO users(name, addres, login, password, post_id) "
+                        "VALUES (?, ?, ?, ?, ?) ", 
+                        args=(name, addres, login, password, post_id, ), many=False)
         
         return req
     
     def get_all_users(self):
         '''Получение всех пользователей'''
-        req = self.execute("SELECT id, name, addres, post_id "
+        req = self.execute("SELECT * "
                         "FROM users ")
+        
+        if req['code'] == 200:
+            return req['data']
+        else:
+            return None
+    
+    def get_user(self, user_id):
+        '''Получение пользователя по его id'''
+        req = self.execute("SELECT * "
+                        "FROM users "
+                        "WHERE id= ? ", 
+                        args=(user_id, ))
+        
+        if req['code'] == 200:
+            return req['data'][0]
+        else:
+            return None
+    
+    def delete_user(self, user_id):
+        '''Удаление пользоваеля по его id'''
+        
+        req = self.execute("DELETE FROM users "
+                         "WHERE id = ?",
+                        args=(user_id, ))
         
         return req
     
-    def get_all_users_by_post(self, post_id):
-        '''получение пользователей с определенной ролью'''
-        req = self.execute("SELECT id, name "
-                        "FROM users "
-                        "WHERE post_id= ? ", 
-                        args=(post_id, ))
+    def update_user(self, id, name, addres, login, password, post_id):
+        '''Обновление информации о пользователе'''
+        
+        req = self.execute("UPDATE users "
+                           "SET name = ?, addres = ?, login = ?, password = ?, post_id = ? "
+                           "WHERE id = ?", 
+                        args=(name, addres, login, password, post_id, id), many=False)
         
         return req
+    
+    #Запросы связанные с должностями
+    def get_post(self, post_id):
+        '''Получение должности пользователя по его id'''
+        
+        req = self.execute("SELECT name "
+                        "FROM posts "
+                        "WHERE id= ? ", 
+                        args=(post_id, ), many=False)
+        
+        if req['code'] == 200:
+            return req['data'][0]
+        else:
+            return None
     
 user = User()
