@@ -15,24 +15,61 @@ class Login(QMainWindow, Ui_LoginWindow):
         self.setupUi(self)
         self.setWindowTitle('Вход')
         
+        self.name.hide()
+        
         self.login_btn.clicked.connect(self.check_user)
-        self.registrate_btn.clicked.connect(self.registerate_user)
+        self.registrate_btn.clicked.connect(self.registerate_user_form)
+        self.login.textChanged.connect(self.no_eror)
+        self.password.textChanged.connect(self.no_eror)
+        self.name.textChanged.connect(self.no_eror)
 
+    def no_eror(self):
+        self.login.setStyleSheet('background-color: rgb(235, 235, 245)')
+        self.password.setStyleSheet('background-color: rgb(235, 235, 245)')
+        self.name.setStyleSheet('background-color: rgb(235, 235, 245)')
+    
+    def eror(self):
+        self.login.setStyleSheet('background-color: rgb(235, 64, 52)')
+        self.password.setStyleSheet('background-color: rgb(235, 64, 52)')
+        self.name.setStyleSheet('background-color: rgb(235, 64, 52)')
+
+    def registerate_user_form(self):
+        self.registrate_btn.clicked.disconnect()
+        self.login_btn.clicked.disconnect()
+        self.login_btn.clicked.connect(self.check_user_form)
+        self.registrate_btn.clicked.connect(self.registerate_user)
+        self.name.show()
+        pass
+    
+    def check_user_form(self):
+        self.registrate_btn.clicked.disconnect()
+        self.login_btn.clicked.disconnect()
+        self.registrate_btn.clicked.connect(self.registerate_user_form)
+        self.login_btn.clicked.connect(self.check_user)
+        self.name.hide()
+        pass
+
+
+    def registerate_user(self):
+        name = self.name.text()
+        login = self.login.text()
+        password = self.password.text()
+        if not user.check_user(login, password) and login and password and name:
+            user.create_user(name, None, login, password)
+            if user.check_user(login, password):
+                self.main_window = MainWindow()
+                self.main_window.show()
+                self.close()
+        else:
+            self.eror()
 
     def check_user(self):
-        req = user.check_user(self.login.text(), self.password.text())
-        if req['code'] == 200:
+        login = self.login.text()
+        password = self.password.text()
+        if user.check_user(login, password) and login and password:
             self.main_window = MainWindow()
             self.main_window.show()
             self.close()
-        
-        elif req['code'] == 201:    
-            print('NO USER')
-        
         else:
-            print('EROR 400')
+            self.eror()
 
-    def registerate_user(self):
-        user.create_user(self.login.text(), self.password.text())
-        req = user.check_user(self.login.text(), self.password.text())
-        print(req)
