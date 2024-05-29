@@ -5,24 +5,22 @@ from .settings import DATA_PATH, DB_PATH
 
 class DBManager:
     def __init__(self):
-        self.db_path = DB_PATH
-        if not self.check_base():
-            self.create_base()
-            
-            
-    # Проверка есть ли БД
-    def check_base(self) -> bool:
-        return os.path.exists(self.db_path)
+        if not self.__check_base():
+            self.__create_base()
 
-    # Подключение к бд
-    def connect_to_base(self):
-        conn = sqlite3.connect(self.db_path)
+    def __check_base(self) -> bool:
+        '''Проверка есть ли БД'''
+        return os.path.exists(DB_PATH)
+
+    def __connect_to_base(self):
+        '''Подключение к БД'''
+        conn = sqlite3.connect(DB_PATH)
         cur = conn.cursor()
         return conn, cur
 
-    # Создание бд
-    def create_base(self):
-        conn, cur = self.connect_to_base()
+    def __create_base(self):
+        '''Создание БД'''
+        conn, cur = self.__connect_to_base()
         try:
             cur.executescript(open(DATA_PATH, encoding="utf-8").read())
             conn.commit()
@@ -32,9 +30,9 @@ class DBManager:
         finally:
             conn.close()
 
-    # выполнение скрипта SQL
     def execute(self, query: str, args=(), many: bool = True):
-        conn, cur = self.connect_to_base()
+        '''Выполнение SQL скрипта'''
+        conn, cur = self.__connect_to_base()
         try:
             res = cur.execute(query, args)
             result = res.fetchall() if many else res.fetchone()
@@ -44,6 +42,8 @@ class DBManager:
             else:
                 return {"code": 200, "data": result}
         except sqlite3.Error as er:
-            return {"code": 400, "data": {'eror': str(er)}}
+            eror = {"code": 400, "data": {'eror': str(er)}}
+            print(eror)
+            return eror
         finally:
             conn.close()
