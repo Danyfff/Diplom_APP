@@ -17,6 +17,19 @@ class Products(DBManager):
         else:
             return
     
+    def get_all_products_by_category(self, category_id):
+        '''Возвращает список всех существующих товаров'''
+        
+        req = self.execute("SELECT * "
+                "FROM products "
+                "WHERE category_id = ?",
+                args=(category_id, ))
+        
+        if req['code'] == 200:
+            return req['data']
+        else:
+            return
+    
     def get_product(self, product_id):
         '''Возвращает список всех существующих товаров'''
         
