@@ -71,6 +71,22 @@ class Products(DBManager):
         
         return req
     
+    def update_quantity_product(self, id, quantity):
+        '''Обновление информации о количестве товара'''
+        
+        product = self.get_product(id)
+        if product:
+            quantity = product[4] + quantity
+        else:
+            return False
+        
+        req = self.execute("UPDATE products "
+                           "SET quantity_in_stock = ? "
+                           "WHERE id = ?", 
+                        args=(quantity, id), many=False)
+        
+        return True
+    
     #Запросы связанные с категориями
     def get_all_categories(self):
         '''Получение всех существующих категорий'''
@@ -95,6 +111,15 @@ class Products(DBManager):
             return req['data'][0]
         else:
             return
+        
+    def delete_category(self, id_cat):
+        '''Удаление категории по ее id'''
+        
+        req = self.execute("DELETE FROM categories "
+                         "WHERE id = ?",
+                        args=(id_cat, ))
+        
+        return req
     
     #Запросы связанные с размерами
     def get_all_sizes(self):
