@@ -46,6 +46,18 @@ class User(DBManager):
             return req['data']
         else:
             return None
+        
+    def get_all_users_by_post(self, post_id):
+        '''Получение пользоватей с определенной ролью'''
+        req = self.execute("SELECT * "
+                        "FROM users "
+                        "WHERE post_id= ? ", 
+                        args=(post_id, ))
+        
+        if req['code'] == 200:
+            return req['data']
+        else:
+            return None
     
     def get_user(self, user_id):
         '''Получение пользователя по его id'''
