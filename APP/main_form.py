@@ -4,8 +4,9 @@ from .db_scripts.user_scripts import user
 from .db_scripts.product_scripts import product
 from .db_scripts.order_scripts import order
 from .db_scripts.suppli_scripts import suppli
-# from .create_product_form import CreateProductWindow
-# from .create_order_form import CreateOrderWindow
+from PyQt6.QtCore import Qt
+from .product_form import ProductWindow
+from .order_form import OrderWindow
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -54,17 +55,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 # Товары
     def create_product(self):
-        print(f'создать товар')
+        self.main_window = ProductWindow()
+        self.main_window.show()
 
     def order_product(self, product_id):
-        print(f'заказать {product_id}')
+        self.main_window = OrderWindow(product_id)
+        self.main_window.show()
 
     def delte_product(self, product_id):
-        print(f'удалить {product_id}')
+        product.delete_product(product_id)
+        self.get_all_products()
 
     def change_product(self, product_id):
-        print(f'Изменить {product_id}')
-
+        self.main_window = ProductWindow(product_id)
+        self.main_window.show()
 
     def get_all_products(self):
         '''Выводит все существующие товары'''
@@ -96,7 +100,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.table_data.setItem(col_row, 3, QTableWidgetItem(str(prod[4])))
                 self.table_data.setItem(col_row, 4, QTableWidgetItem(str(product.get_category(prod[5]))))
                 
-                self.order_product_btn =  QPushButton('Заказать')
+                if user.post_id != 3:
+                    self.order_product_btn =  QPushButton('Создать заказ')
+                else:
+                    self.order_product_btn =  QPushButton('Заказать')
                 self.order_product_btn.clicked.connect(lambda _, id=prod[0]: self.order_product(id))
                 self.table_data.setCellWidget(col_row, 5, self.order_product_btn)
                 
@@ -109,6 +116,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     self.table_data.setCellWidget(col_row, 7, self.change_product_btn)
                 
                 col_row += 1
+                
+        column = (1, 2, 3, 4)
+        
+        for row in range(self.table_data.rowCount()):
+            for col in column:
+                item = self.table_data.item(row, col)
+                if item:
+                    item.setTextAlignment(Qt.AlignmentFlag.AlignHCenter)
             
 # Заказы
     def get_all_orders(self):
@@ -225,7 +240,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.table_data.setRowCount(row) 
             self.table_data.setColumnCount(8)
             self.table_data.setHorizontalHeaderLabels(
-                ['Коментарий', 'Дата', 'Цена', 'Кол-во', 'Товар', 'Продавец', 'Покупатель', '']) 
+                ['Коментарий', 'Дата', 'Цена', 'Кол-во', 'Товар', 'Продавец', 'Покупатель', 'Статус']) 
             
             for ord in orders:
                 
@@ -242,6 +257,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 bayer = user.get_user(ord[7])
                 if bayer:
                     bayer = bayer[1]
+                    
+                status = order.get_status(ord[8])
                 
                 self.table_data.setItem(col_row, 0, QTableWidgetItem(str(ord[1])))
                 self.table_data.setItem(col_row, 1, QTableWidgetItem(str(ord[2])))
@@ -250,9 +267,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.table_data.setItem(col_row, 4, QTableWidgetItem(str(item)))
                 self.table_data.setItem(col_row, 5, QTableWidgetItem(str(seller)))
                 self.table_data.setItem(col_row, 6, QTableWidgetItem(str(bayer)))
-                self.change_order_btn =  QPushButton('Принять')
-                self.change_order_btn.clicked.connect(lambda _, id=ord[0]: self.change_order(id))
-                self.table_data.setCellWidget(col_row, 7, self.change_order_btn)
+                self.table_data.setItem(col_row, 7, QTableWidgetItem(str(status)))
                 
                 col_row += 1
                 
