@@ -140,6 +140,23 @@ class Ui_MainWindow(object):
         self.post_text.setObjectName("post_text")
         self.horizontalLayout_2.addWidget(self.post_text)
         self.verticalLayout.addWidget(self.splitter)
+        self.user_prifil_btn = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.user_prifil_btn.setStyleSheet("QPushButton {\n"
+"    background-color: rgb(185, 196, 255);\n"
+"    padding: 5 10 5 10;\n"
+"    border:1px solid black;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(155, 155, 224);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(140, 140, 207);\n"
+"}")
+        self.user_prifil_btn.setObjectName("user_prifil_btn")
+        self.verticalLayout.addWidget(self.user_prifil_btn)
         self.products_btn = QtWidgets.QPushButton(parent=self.centralwidget)
         self.products_btn.setMaximumSize(QtCore.QSize(230, 16777215))
         self.products_btn.setStyleSheet("QPushButton {\n"
@@ -299,6 +316,7 @@ class Ui_MainWindow(object):
         self.create_btn.setText(_translate("MainWindow", "+"))
         self.label.setText(_translate("MainWindow", "Имя:"))
         self.label_2.setText(_translate("MainWindow", "Роль:"))
+        self.user_prifil_btn.setText(_translate("MainWindow", "Мой профиль"))
         self.products_btn.setText(_translate("MainWindow", "Каталог"))
         self.orders_btn.setText(_translate("MainWindow", "Заказы"))
         self.orders_waiting_btn.setText(_translate("MainWindow", "Заказы в ожидании"))
