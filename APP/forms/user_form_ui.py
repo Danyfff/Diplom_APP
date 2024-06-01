@@ -147,6 +147,9 @@ class Ui_UserWindow(object):
         self.label_10.setStyleSheet("")
         self.label_10.setObjectName("label_10")
         self.user_choise_layout.addWidget(self.label_10)
+        self.post_label = QtWidgets.QLabel(parent=self.centralwidget)
+        self.post_label.setObjectName("post_label")
+        self.user_choise_layout.addWidget(self.post_label)
         self.postsBox = QtWidgets.QComboBox(parent=self.centralwidget)
         self.postsBox.setMinimumSize(QtCore.QSize(200, 0))
         self.postsBox.setStyleSheet("background-color: rgb(235, 235, 245);\n"
@@ -217,4 +220,5 @@ class Ui_UserWindow(object):
         self.label.setText(_translate("UserWindow", "Логин:"))
         self.label_2.setText(_translate("UserWindow", "Пароль:"))
         self.label_10.setText(_translate("UserWindow", "Роль:"))
+        self.post_label.setText(_translate("UserWindow", "TextLabel"))
         self.clousing_btn.setText(_translate("UserWindow", "Отмена"))

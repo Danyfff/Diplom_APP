@@ -6,6 +6,7 @@ from .db_scripts.order_scripts import order
 from .db_scripts.suppli_scripts import suppli
 from PyQt6.QtCore import Qt
 from .product_form import ProductWindow
+from .user_form import UserWindow
 from .order_form import OrderWindow
 
 
@@ -31,6 +32,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.users_btn.clicked.connect(self.get_all_users)
         self.supplies_btn.clicked.connect(self.get_all_supplies)
         self.categories_btn.clicked.connect(self.get_all_categories)
+        self.user_prifil_btn.clicked.connect(self.user_form)
         
         self.get_all_products()
         
@@ -53,6 +55,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.supplies_btn.hide()
             self.categories_btn.hide()
 
+    def user_form(self):
+        self.main_window = UserWindow(my_user_data=True)
+        self.main_window.show()
+        
 # Товары
     def create_product(self):
         self.main_window = ProductWindow()
@@ -116,6 +122,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     self.table_data.setCellWidget(col_row, 7, self.change_product_btn)
                 
                 col_row += 1
+        
+        self.table_data.setColumnWidth(0, 150)
                 
         column = (1, 2, 3, 4)
         
@@ -160,7 +168,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 
                 self.table_data.setItem(col_row, 0, QTableWidgetItem(str(ord[1])))
                 self.table_data.setItem(col_row, 1, QTableWidgetItem(str(ord[2])))
-                self.table_data.setItem(col_row, 2, QTableWidgetItem(str(ord[3])))
+                self.table_data.setItem(col_row, 2, QTableWidgetItem(str(ord[3]) + ' Руб.'))
                 self.table_data.setItem(col_row, 3, QTableWidgetItem(str(ord[4])))
                 self.table_data.setItem(col_row, 4, QTableWidgetItem(str(item)))
                 self.table_data.setItem(col_row, 5, QTableWidgetItem(str(seller)))
@@ -169,10 +177,28 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 
                 
                 col_row += 1
+                
+        self.table_data.resizeRowsToContents()
+        self.table_data.setColumnWidth(7, 80)
+        self.table_data.setColumnWidth(6, 100)
+        self.table_data.setColumnWidth(5, 100)
+        self.table_data.setColumnWidth(4, 160)
+        self.table_data.setColumnWidth(3, 50)
+        self.table_data.setColumnWidth(2, 80)
+        self.table_data.setColumnWidth(1, 80)
+        self.table_data.setColumnWidth(0, 220)
+        
+        column = (1, 2, 3, 4, 5 ,6 ,7)
+        for row in range(self.table_data.rowCount()):
+            for col in column:
+                item = self.table_data.item(row, col)
+                if item:
+                    item.setTextAlignment(Qt.AlignmentFlag.AlignHCenter)
 
 # Заказы в обработке
     def change_order(self, order_id):
-        print(f'Принять заказ {order_id}')
+        order.update_status_order(order_id, user.id, 2)
+        self.get_all_orders_in_weiting()
 
     def get_all_orders_in_weiting(self):
         '''Выводит все существующие товары'''
@@ -206,8 +232,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 if bayer:
                     bayer = bayer[1]
                 
-                
-                
                 self.table_data.setItem(col_row, 0, QTableWidgetItem(str(ord[1])))
                 self.table_data.setItem(col_row, 1, QTableWidgetItem(str(ord[2])))
                 self.table_data.setItem(col_row, 2, QTableWidgetItem(str(ord[3])))
@@ -220,6 +244,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.table_data.setCellWidget(col_row, 7, self.change_product_btn)
                 
                 col_row += 1
+        
+        self.table_data.setColumnWidth(6, 100)
+        self.table_data.setColumnWidth(5, 100)
+        self.table_data.setColumnWidth(4, 150)
+        self.table_data.setColumnWidth(3, 50)
+        self.table_data.setColumnWidth(2, 80)
+        self.table_data.setColumnWidth(1, 80)
+        self.table_data.setColumnWidth(0, 220)
+        
+        column = (1, 2, 3, 5, 6)
+        for row in range(self.table_data.rowCount()):
+            for col in column:
+                item = self.table_data.item(row, col)
+                if item:
+                    item.setTextAlignment(Qt.AlignmentFlag.AlignHCenter)
                 
 # Заказы залоггиненого пользователя
     def get_all_user_orders(self):
@@ -262,7 +301,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 
                 self.table_data.setItem(col_row, 0, QTableWidgetItem(str(ord[1])))
                 self.table_data.setItem(col_row, 1, QTableWidgetItem(str(ord[2])))
-                self.table_data.setItem(col_row, 2, QTableWidgetItem(str(ord[3])))
+                self.table_data.setItem(col_row, 2, QTableWidgetItem(str(ord[3]) + ' Руб.'))
                 self.table_data.setItem(col_row, 3, QTableWidgetItem(str(ord[4])))
                 self.table_data.setItem(col_row, 4, QTableWidgetItem(str(item)))
                 self.table_data.setItem(col_row, 5, QTableWidgetItem(str(seller)))
@@ -271,15 +310,33 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 
                 col_row += 1
                 
+        self.table_data.setColumnWidth(6, 100)
+        self.table_data.setColumnWidth(5, 100)
+        self.table_data.setColumnWidth(4, 150)
+        self.table_data.setColumnWidth(3, 50)
+        self.table_data.setColumnWidth(2, 80)
+        self.table_data.setColumnWidth(1, 80)
+        self.table_data.setColumnWidth(0, 250)
+        
+        column = (1, 2, 3, 5, 6, 7)
+        for row in range(self.table_data.rowCount()):
+            for col in column:
+                item = self.table_data.item(row, col)
+                if item:
+                    item.setTextAlignment(Qt.AlignmentFlag.AlignHCenter)
+                
 # Пользователи
     def create_user(self):
-        print(f'Создать Кассира')
+        self.main_window = UserWindow()
+        self.main_window.show()
 
     def change_user(self, user_id):
-        print(f'Изменить {user_id}')
+        self.main_window = UserWindow(user_id)
+        self.main_window.show()
 
     def delte_user(self, user_id):
-        print(f'удалить {user_id}')
+        user.delete_user(user_id)
+        self.get_all_users()
 
     def get_all_users(self):
         '''Выводит все существующие товары'''
@@ -295,28 +352,29 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if users:
             row = len(users)
             
-            self.table_data.setRowCount(row) 
+            self.table_data.setRowCount(row-1) 
             self.table_data.setColumnCount(7)
             self.table_data.setHorizontalHeaderLabels(
                 ['Имя', 'Адрес', 'Логин', 'Пароль', 'Роль', '', '']) 
             
             for us in users:
+                if us[0] != user.id:
                     
-                post = user.get_post(us[5])
-                
-                self.table_data.setItem(col_row, 0, QTableWidgetItem(str(us[1])))
-                self.table_data.setItem(col_row, 1, QTableWidgetItem(str(us[2])))
-                self.table_data.setItem(col_row, 2, QTableWidgetItem(str(us[3])))
-                self.table_data.setItem(col_row, 3, QTableWidgetItem(str(us[4])))
-                self.table_data.setItem(col_row, 4, QTableWidgetItem(str(post)))
-                self.change_user_btn =  QPushButton('Изменить')
-                self.change_user_btn.clicked.connect(lambda _, id=us[0]: self.change_user(id))
-                self.table_data.setCellWidget(col_row, 5, self.change_user_btn)
-                self.delte_user_btn =  QPushButton('Удалить')
-                self.delte_user_btn.clicked.connect(lambda _, id=us[0]: self.delte_user(id))
-                self.table_data.setCellWidget(col_row, 6, self.delte_user_btn)
-                
-                col_row += 1
+                    post = user.get_post(us[5])
+                    
+                    self.table_data.setItem(col_row, 0, QTableWidgetItem(str(us[1])))
+                    self.table_data.setItem(col_row, 1, QTableWidgetItem(str(us[2])))
+                    self.table_data.setItem(col_row, 2, QTableWidgetItem(str(us[3])))
+                    self.table_data.setItem(col_row, 3, QTableWidgetItem(str(us[4])))
+                    self.table_data.setItem(col_row, 4, QTableWidgetItem(str(post)))
+                    self.change_user_btn =  QPushButton('Изменить')
+                    self.change_user_btn.clicked.connect(lambda _, id=us[0]: self.change_user(id))
+                    self.table_data.setCellWidget(col_row, 5, self.change_user_btn)
+                    self.delte_user_btn =  QPushButton('Удалить')
+                    self.delte_user_btn.clicked.connect(lambda _, id=us[0]: self.delte_user(id))
+                    self.table_data.setCellWidget(col_row, 6, self.delte_user_btn)
+                    
+                    col_row += 1
                 
 # Поставки
     def create_suppli(self):

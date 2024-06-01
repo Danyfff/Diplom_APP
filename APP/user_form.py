@@ -1,22 +1,31 @@
-from PyQt6.QtWidgets import QMainWindow
+from PyQt6.QtWidgets import QMainWindow, QLabel
 from .forms.user_form_ui import Ui_UserWindow
 from .db_scripts.user_scripts import user
 
 
 
 class UserWindow(QMainWindow, Ui_UserWindow):
-    def __init__(self, user_id=None):
+    def __init__(self, user_id=None, my_user_data=False):
         super().__init__()
         self.setupUi(self)
         
+        self.my_user_data = my_user_data
         self.posts = user.get_all_posts()
         self.filling_posts()
+        self.post_label.hide()
         
         if user_id:
+            self.setWindowTitle('Профиль')
             self.user_id = user_id
             self.user_data = user.get_user(user_id)
             self.update_user_form()
+        elif my_user_data:
+            self.setWindowTitle('Мой профиль')
+            self.user_id = user.id
+            self.user_data = user.get_user(self.user_id)
+            self.update_user_form()
         else:
+            self.setWindowTitle('Создание профилья')
             self.create_user_form()
             
         self.clousing_btn.clicked.connect(self.close)
@@ -50,7 +59,11 @@ class UserWindow(QMainWindow, Ui_UserWindow):
         addres = self.addres_input.text()
         login = self.login_input.text()
         password = self.password_input.text()
-        post_id = self.get_activ_post()
+        if self.my_user_data:
+            post_id = self.user_data[5]
+        else:
+            post_id = self.get_activ_post()
+        
         if name and login and password and post_id:
             user.update_user(self.user_id, name, addres, login, password, post_id)
             self.close()
@@ -68,4 +81,9 @@ class UserWindow(QMainWindow, Ui_UserWindow):
             self.addres_input.setText(self.user_data[2])
             self.login_input.setText(self.user_data[3])
             self.password_input.setText(self.user_data[4])
-            self.activ_post(self.user_data[5])
+            if self.my_user_data:
+                self.postsBox.hide()
+                self.post_label.setText(f"{user.get_post(self.user_data[5])}")
+                self.post_label.show()
+            else:
+                self.activ_post(self.user_data[5])

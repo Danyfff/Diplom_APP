@@ -311,6 +311,13 @@ border: 1px solid dlack</string>
          </widget>
         </item>
         <item>
+         <widget class="QLabel" name="post_label">
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QComboBox" name="postsBox">
           <property name="minimumSize">
            <size>

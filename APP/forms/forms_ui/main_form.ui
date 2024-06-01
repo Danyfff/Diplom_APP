@@ -256,6 +256,29 @@ border-radius: 5px;</string>
            </widget>
           </item>
           <item>
+           <widget class="QPushButton" name="user_prifil_btn">
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+	background-color: rgb(185, 196, 255);
+	padding: 5 10 5 10;
+	border:1px solid black;
+	border-radius: 5px;
+}
+
+QPushButton:hover {
+	background-color: rgb(155, 155, 224);
+}
+
+QPushButton:pressed {
+	background-color: rgb(140, 140, 207);
+}</string>
+            </property>
+            <property name="text">
+             <string>Мой профиль</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="products_btn">
             <property name="maximumSize">
              <size>
