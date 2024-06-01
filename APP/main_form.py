@@ -3,8 +3,8 @@ from .forms.main_form_ui import Ui_MainWindow
 from .db_scripts.user_scripts import user
 from .db_scripts.product_scripts import product
 from .db_scripts.order_scripts import order
-from .db_scripts.suppli_scripts import suppli
 from PyQt6.QtCore import Qt
+from .category_form import CategoryWindow
 from .supply_form import SupplyWindow
 from .product_form import ProductWindow
 from .user_form import UserWindow
@@ -32,7 +32,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.my_orders_btn.clicked.connect(self.get_all_user_orders)
         self.users_btn.clicked.connect(self.get_all_users)
         self.supplies_btn.clicked.connect(self.supplies_window)
-        self.categories_btn.clicked.connect(self.get_all_categories)
+        self.categories_btn.clicked.connect(self.category_window)
         self.user_prifil_btn.clicked.connect(self.user_form)
         
         self.get_all_products()
@@ -383,47 +383,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.main_window.show()
                 
 # Категории
-    def create_category(self):
-        print(f'Создать категорию')
-
-    def change_category(self, category_id):
-        print(f'Изменить {category_id}')
-
-    def delte_category(self, category_id):
-        print(f'удалить {category_id}')
-
-    def get_all_categories(self):
-        '''Выводит все существующие товары'''
-        
-        self.create_btn.show()
-        self.create_btn.clicked.disconnect()
-        self.create_btn.clicked.connect(self.create_category)
-        
-        self.clear_table()
-        col_row = 0
-        categories = product.get_all_categories()
-        
-        if categories:
-            row = len(categories)
-            
-            self.table_data.setRowCount(row) 
-            self.table_data.setColumnCount(4)
-            self.table_data.setHorizontalHeaderLabels(
-                ['Название', 'Кол-во товаров', '', '']) 
-            
-            for cat in categories:
-                
-                col_itens = product.get_all_products_by_category(cat[0])
-                if col_itens:
-                    col_itens = len(col_itens)
-                
-                self.table_data.setItem(col_row, 0, QTableWidgetItem(str(cat[1])))
-                self.table_data.setItem(col_row, 1, QTableWidgetItem(str(col_itens)))
-                self.change_category_btn =  QPushButton('Изменить')
-                self.change_category_btn.clicked.connect(lambda _, id=cat[0]: self.delte_suppli(id))
-                self.table_data.setCellWidget(col_row, 2, self.change_category_btn)
-                self.delte_category_btn =  QPushButton('Удалить')
-                self.delte_category_btn.clicked.connect(lambda _, id=cat[0]: self.delte_category(id))
-                self.table_data.setCellWidget(col_row, 3, self.delte_category_btn)
-                
-                col_row += 1
+    def category_window(self):
+        self.main_window = CategoryWindow()
+        self.main_window.show()
