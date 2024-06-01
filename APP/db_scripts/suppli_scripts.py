@@ -26,4 +26,13 @@ class Supplies(DBManager):
         
         return req
     
+    def delete_supply(self, supply_id):
+        '''Удаление поставки по ее id'''
+        
+        req = self.execute("DELETE FROM supplies "
+                         "WHERE id = ?",
+                        args=(supply_id, ))
+        
+        return req
+    
 suppli = Supplies()

@@ -5,6 +5,7 @@ from .db_scripts.product_scripts import product
 from .db_scripts.order_scripts import order
 from .db_scripts.suppli_scripts import suppli
 from PyQt6.QtCore import Qt
+from .supply_form import SupplyWindow
 from .product_form import ProductWindow
 from .user_form import UserWindow
 from .order_form import OrderWindow
@@ -30,7 +31,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.orders_waiting_btn.clicked.connect(self.get_all_orders_in_weiting)
         self.my_orders_btn.clicked.connect(self.get_all_user_orders)
         self.users_btn.clicked.connect(self.get_all_users)
-        self.supplies_btn.clicked.connect(self.get_all_supplies)
+        self.supplies_btn.clicked.connect(self.supplies_window)
         self.categories_btn.clicked.connect(self.get_all_categories)
         self.user_prifil_btn.clicked.connect(self.user_form)
         
@@ -377,45 +378,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     col_row += 1
                 
 # Поставки
-    def create_suppli(self):
-        print(f'Создать поставку')
-
-    def delte_suppli(self, suppli_id):
-        print(f'удалить {suppli_id}')
-
-    def get_all_supplies(self):
-        '''Выводит все существующие товары'''
-        
-        self.create_btn.show()
-        self.create_btn.clicked.disconnect()
-        self.create_btn.clicked.connect(self.create_suppli)
-        
-        self.clear_table()
-        col_row = 0
-        supplies = suppli.get_all_supplies()
-        
-        if supplies:
-            row = len(supplies)
-            
-            self.table_data.setRowCount(row) 
-            self.table_data.setColumnCount(4)
-            self.table_data.setHorizontalHeaderLabels(
-                ['Дата', 'Количество', 'Товар', '']) 
-            
-            for supp in supplies:
-                    
-                item = product.get_product(supp[2])
-                if item:
-                    item = item[1]
-                
-                self.table_data.setItem(col_row, 0, QTableWidgetItem(str(supp[1])))
-                self.table_data.setItem(col_row, 1, QTableWidgetItem(str(supp[2])))
-                self.table_data.setItem(col_row, 2, QTableWidgetItem(str(item)))
-                self.delte_user_btn =  QPushButton('Удалить')
-                self.delte_user_btn.clicked.connect(lambda _, id=supp[2]: self.delte_suppli(id))
-                self.table_data.setCellWidget(col_row, 3, self.delte_user_btn)
-                
-                col_row += 1
+    def supplies_window(self):
+        self.main_window = SupplyWindow()
+        self.main_window.show()
                 
 # Категории
     def create_category(self):
