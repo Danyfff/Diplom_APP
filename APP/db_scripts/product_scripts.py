@@ -112,12 +112,31 @@ class Products(DBManager):
         else:
             return
         
+    def create_category(self, name):
+        '''Создание новой категории'''
+        
+        req = self.execute("INSERT INTO categories(name) "
+                        "VALUES (?) ", 
+                        args=(name, ), many=False)
+        
+        return req
+        
     def delete_category(self, id_cat):
         '''Удаление категории по ее id'''
         
         req = self.execute("DELETE FROM categories "
                          "WHERE id = ?",
                         args=(id_cat, ))
+        
+        return req
+    
+    def update_category(self, id, name):
+        '''Обновление названия категории по ее id'''
+        
+        req = self.execute("UPDATE categories "
+                           "SET name = ? "
+                           "WHERE id = ?", 
+                        args=(name, id), many=False)
         
         return req
     
