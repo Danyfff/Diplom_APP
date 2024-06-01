@@ -103,5 +103,16 @@ class User(DBManager):
             return req['data'][0]
         else:
             return None
+        
+    def get_all_posts(self):
+        '''Получение всех должностей'''
+        
+        req = self.execute("SELECT * "
+                        "FROM posts ")
+        
+        if req['code'] == 200:
+            return req['data']
+        else:
+            return None
     
 user = User()
