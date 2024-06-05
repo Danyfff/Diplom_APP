@@ -123,12 +123,12 @@ INSERT INTO supplies (data, quantity, product_id) VALUES
     ('2024-05-19', 24, 17), ('2024-05-20', 4, 22);
 
 INSERT INTO orders (comment, data, price, quantity, product_id, seller_id, bayer_id, status_id) VALUES 
-('First order', '2024-05-01', 100, 2, 1, 1, 2, 1), ('Second order', '2024-05-02', 150, 3, 2, 2, 3, 2),
-('Third order', '2024-05-03', 200, 5, 3, 3, 1, 1), ('Fourth order', '2024-05-04', 80, 4, 1, 1, 2, 2),
-('Fifth order', '2024-05-05', 120, 2, 2, 2, 3, 1), ('Sixth order', '2024-05-06', 90, 3, 3, 3, 1, 2),
-('Seventh order', '2024-05-07', 110, 1, 1, 1, 2, 1), ('Eighth order', '2024-05-08', 160, 4, 2, 2, 3, 2),
-('Ninth order', '2024-05-09', 70, 5, 3, 3, 1, 1), ('Tenth order', '2024-05-10', 180, 3, 1, 1, 2, 2),
-('Eleventh order', '2024-05-11', 130, 2, 2, 2, 3, 1), ('Twelfth order', '2024-05-12', 190, 4, 3, 3, 1, 2),
-('Thirteenth order', '2024-05-13', 60, 3, 1, 1, 2, 1), ('Fourteenth order', '2024-05-14', 140, 1, 2, 2, 3, 2),
-('Fifteenth order', '2024-05-15', 200, 2, 3, 3, 1, 1), ('Sixteenth order', '2024-05-16', 50, 4, 1, 1, 2, 2),
-('Seventeenth order', '2024-05-17', 160, 3, 2, 2, 3, 1), ('Eighteenth order', '2024-05-18', 1345, 3, 2, 2, 3, 1);
+    ('First order', '2024-05-01', 100, 2, 1, 1, 2, 1), ('Second order', '2024-05-02', 150, 3, 2, 2, 5, 2),
+    ('Third order', '2024-05-03', 200, 5, 3, 3, 1, 1), ('Fourth order', '2024-05-04', 80, 4, 1, 3, 5, 2),
+    ('Fifth order', '2024-05-05', 120, 2, 2, 2, 3, 1), ('Sixth order', '2024-05-06', 90, 3, 3, 4, 6, 2),
+    ('Seventh order', '2024-05-07', 110, 1, 1, 1, 2, 1), ('Eighth order', '2024-05-08', 160, 4, 2, 2, 6, 2),
+    ('Ninth order', '2024-05-09', 70, 5, 3, 3, 1, 1), ('Tenth order', '2024-05-10', 180, 3, 1, 3, 7, 2),
+    ('Eleventh order', '2024-05-11', 130, 2, 2, 2, 3, 1), ('Twelfth order', '2024-05-12', 190, 4, 3, 4, 7, 2),
+    ('Thirteenth order', '2024-05-13', 60, 3, 1, 1, 2, 1), ('Fourteenth order', '2024-05-14', 140, 1, 2, 2, 8, 2),
+    ('Fifteenth order', '2024-05-15', 200, 2, 3, 3, 1, 1), ('Sixteenth order', '2024-05-16', 50, 4, 1, 3, 8, 2),
+    ('Seventeenth order', '2024-05-17', 160, 3, 2, 2, 3, 1), ('Eighteenth order', '2024-05-18', 1345, 3, 2, 4, 9, 1);
