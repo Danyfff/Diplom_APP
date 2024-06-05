@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>241</width>
-    <height>207</height>
+    <width>377</width>
+    <height>265</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,7 @@
        <widget class="QLabel" name="label">
         <property name="font">
          <font>
-          <pointsize>20</pointsize>
+          <pointsize>29</pointsize>
           <italic>true</italic>
           <bold>true</bold>
           <strikeout>false</strikeout>
@@ -63,8 +63,13 @@
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>25</height>
+              <height>35</height>
              </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>14</pointsize>
+             </font>
             </property>
             <property name="autoFillBackground">
              <bool>false</bool>
@@ -115,8 +120,13 @@ border: 1px solid dlack</string>
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>25</height>
+              <height>35</height>
              </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>14</pointsize>
+             </font>
             </property>
             <property name="autoFillBackground">
              <bool>false</bool>
@@ -167,8 +177,13 @@ border: 1px solid dlack</string>
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>25</height>
+              <height>35</height>
              </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>14</pointsize>
+             </font>
             </property>
             <property name="mouseTracking">
              <bool>true</bool>
@@ -247,9 +262,14 @@ border: 1px solid dlack</string>
            <widget class="QPushButton" name="login_btn">
             <property name="minimumSize">
              <size>
-              <width>90</width>
-              <height>0</height>
+              <width>130</width>
+              <height>40</height>
              </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton {
@@ -289,9 +309,14 @@ QPushButton:pressed {
            <widget class="QPushButton" name="registrate_btn">
             <property name="minimumSize">
              <size>
-              <width>90</width>
-              <height>0</height>
+              <width>130</width>
+              <height>40</height>
              </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton {

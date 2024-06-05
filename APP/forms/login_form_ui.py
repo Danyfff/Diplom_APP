@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'APP\forms\forms_ui\login_form.ui'
+# Form implementation generated from reading ui file '.\APP\forms\forms_ui\login_form.ui'
 #
 # Created by: PyQt6 UI code generator 6.4.2
 #
@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_LoginWindow(object):
     def setupUi(self, LoginWindow):
         LoginWindow.setObjectName("LoginWindow")
-        LoginWindow.resize(241, 207)
+        LoginWindow.resize(377, 265)
         LoginWindow.setStyleSheet("background-color: rgb(235, 231, 255);")
         LoginWindow.setTabShape(QtWidgets.QTabWidget.TabShape.Triangular)
         self.centralwidget = QtWidgets.QWidget(parent=LoginWindow)
@@ -23,7 +23,7 @@ class Ui_LoginWindow(object):
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.label = QtWidgets.QLabel(parent=self.centralwidget)
         font = QtGui.QFont()
-        font.setPointSize(20)
+        font.setPointSize(29)
         font.setBold(True)
         font.setItalic(True)
         font.setStrikeOut(False)
@@ -44,7 +44,10 @@ class Ui_LoginWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.name.sizePolicy().hasHeightForWidth())
         self.name.setSizePolicy(sizePolicy)
-        self.name.setMinimumSize(QtCore.QSize(0, 25))
+        self.name.setMinimumSize(QtCore.QSize(0, 35))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        self.name.setFont(font)
         self.name.setAutoFillBackground(False)
         self.name.setStyleSheet("background-color: rgb(235, 235, 245);\n"
 "border-radius: 5px;\n"
@@ -63,7 +66,10 @@ class Ui_LoginWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.login.sizePolicy().hasHeightForWidth())
         self.login.setSizePolicy(sizePolicy)
-        self.login.setMinimumSize(QtCore.QSize(0, 25))
+        self.login.setMinimumSize(QtCore.QSize(0, 35))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        self.login.setFont(font)
         self.login.setAutoFillBackground(False)
         self.login.setStyleSheet("background-color: rgb(235, 235, 245);\n"
 "border-radius: 5px;\n"
@@ -82,7 +88,10 @@ class Ui_LoginWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.password.sizePolicy().hasHeightForWidth())
         self.password.setSizePolicy(sizePolicy)
-        self.password.setMinimumSize(QtCore.QSize(0, 25))
+        self.password.setMinimumSize(QtCore.QSize(0, 35))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        self.password.setFont(font)
         self.password.setMouseTracking(True)
         self.password.setTabletTracking(False)
         self.password.setAcceptDrops(True)
@@ -107,7 +116,10 @@ class Ui_LoginWindow(object):
         spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout.addItem(spacerItem3)
         self.login_btn = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.login_btn.setMinimumSize(QtCore.QSize(90, 0))
+        self.login_btn.setMinimumSize(QtCore.QSize(130, 40))
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        self.login_btn.setFont(font)
         self.login_btn.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(185, 196, 255);\n"
 "    padding: 5 10 5 10;\n"
@@ -127,7 +139,10 @@ class Ui_LoginWindow(object):
         spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout.addItem(spacerItem4)
         self.registrate_btn = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.registrate_btn.setMinimumSize(QtCore.QSize(90, 0))
+        self.registrate_btn.setMinimumSize(QtCore.QSize(130, 40))
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        self.registrate_btn.setFont(font)
         self.registrate_btn.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(185, 196, 255);\n"
 "    padding: 5 10 5 10;\n"
