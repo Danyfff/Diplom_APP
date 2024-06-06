@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QMainWindow, QTableWidgetItem, QPushButton
+from PyQt6.QtWidgets import QMainWindow, QTableWidgetItem, QPushButton, QMessageBox
 from .forms.main_form_ui import Ui_MainWindow
 from .db_scripts.user_scripts import user
 from .db_scripts.product_scripts import product
@@ -56,6 +56,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.supplies_btn.hide()
             self.categories_btn.hide()
 
+    def warning_window(self, titel, text):
+        '''Вывод окна с предупреждением'''
+        message_box = QMessageBox()
+        message_box.setWindowTitle(titel)
+        message_box.setText(text)
+        message_box.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+        result = message_box.exec()
+        if result == QMessageBox.StandardButton.Yes:
+            return True
+        else:
+            return False
+        
+
     def user_form(self):
         self.main_window = UserWindow(my_user_data=True)
         self.main_window.show()
@@ -70,8 +83,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.main_window.show()
 
     def delte_product(self, product_id):
-        product.delete_product(product_id)
-        self.get_all_products()
+        if self.warning_window('Удаление товара', 'Хотите удалить товар?'):
+            product.delete_product(product_id)
+            self.get_all_products()
 
     def change_product(self, product_id):
         self.main_window = ProductWindow(product_id)
@@ -336,8 +350,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.main_window.show()
 
     def delte_user(self, user_id):
-        user.delete_user(user_id)
-        self.get_all_users()
+        if self.warning_window('Удаление пользователя', 'Хотите удалить пользователя?'):
+            user.delete_user(user_id)
+            self.get_all_users()
 
     def get_all_users(self):
         '''Выводит все существующие товары'''
